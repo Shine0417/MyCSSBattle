@@ -1,6 +1,23 @@
 {
-  "name": "CSS-Battle",
-  "version": "1.0.0",
-  "main": "index.js",
-  "license": "MIT"
+    "name": "CSS-Battle",
+    "version": "1.0.0",
+    "main": "index.js",
+    "repository": "https://github.com/Shine0417/MyCSSBattle.git",
+    "author": "Shine0417 <b07902109@ntu.edu.tw>",
+    "license": "MIT",
+    "scripts": {
+        "start": "cd backend && yarn start",
+        "build": "cd frontend && yarn && yarn build && cd .. && cd backend && yarn"
+    },
+    "cacheDirectories": [
+        "frontend/node_modules",
+        "backend/node_modules",
+        "node_modules"
+    ],
+    "keywords": [
+        "node",
+        "heroku",
+        "create-react-app",
+        "react"
+    ]
 }

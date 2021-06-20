@@ -12,7 +12,7 @@ const BackgroundVideo = ({src}) => {
             transform: "translate(-50%, -50%)",
             zIndex: "-1",
         }}>
-        <source src={src} type='video/mp4' />
+        <source src={process.env.PUBLIC_URL + "background.mp4"} type='video/mp4' />
     </video>
         </span>)
 }

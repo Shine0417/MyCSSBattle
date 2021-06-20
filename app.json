@@ -1,0 +1,17 @@
+{
+    "name": "CSS-battle",
+    "description": "web app made of create-react-app UI + Node API",
+    "scripts": {},
+    "env": {},
+    "formation": {
+        "web": {
+            "quantity": 1
+        }
+    },
+    "addons": [
+
+    ],
+    "buildpacks": [{
+        "url": "heroku/nodejs"
+    }]
+}

@@ -1,6 +1,17 @@
 {
-  "name": "backend",
-  "version": "1.0.0",
-  "main": "index.js",
-  "license": "MIT"
+    "name": "backend",
+    "version": "1.0.0",
+    "main": "index.js",
+    "license": "MIT",
+    "engines": {
+        "node": "14.x",
+        "npm": ">= 4.4.0"
+    },
+    "scripts": {
+        "start": "node server"
+    },
+    "dependencies": {
+        "express": "^4.17.1",
+        "path": "^0.12.7"
+    }
 }

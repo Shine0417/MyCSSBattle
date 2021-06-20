@@ -1,0 +1,39 @@
+Arguments: 
+  D:\node js\node.exe C:\Users\Shine\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js server
+
+PATH: 
+  D:\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;D:\WinSCP\;D:\Git\cmd;D:\node js\;D:\Microsoft VS Code\bin;C:\Program Files (x86)\Pulse Secure\VC142.CRT\X64\;C:\Program Files (x86)\Pulse Secure\VC142.CRT\X86\;C:\Program Files\dotnet\;C:\ProgramData\chocolatey\bin;D:\Anaconda\Scripts;C:\Program Files\MySQL\MySQL Shell 8.0\bin\;C:\Users\Shine\AppData\Local\Microsoft\WindowsApps;D:\iverilog\bin;D:\iverilog\gtkwave\bin;C:\Users\Shine\AppData\Roaming\npm;D:\Microsoft VS Code\bin;D:\mysql;D:\PostGreSql\bin;D:\Course\109-2 OOP\hw2-turn-based-rpg-battle-game-Shine0417\src\utils\chromedriver_win32;D:\Anaconda\bin;D:\ffmpeg-4.4-full_build\ffmpeg-4.4-full_build\bin;D:\Ruby\Ruby30-x64\bin;D:\heroku\bin;C:\Users\Shine\.dotnet\tools;D:\mingw\bin;
+
+Yarn version: 
+  1.22.10
+
+Node version: 
+  14.16.0
+
+Platform: 
+  win32 x64
+
+Trace: 
+  SyntaxError: D:\Course\109-2 Web programming\project\final\CSS-Battle\package.json: Unexpected token } in JSON at position 354
+      at JSON.parse (<anonymous>)
+      at C:\Users\Shine\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:1625:59
+      at Generator.next (<anonymous>)
+      at step (C:\Users\Shine\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:310:30)
+      at C:\Users\Shine\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:321:13
+
+npm manifest: 
+  {
+      "name": "backend",
+      "version": "1.0.0",
+      "main": "index.js",
+      "license": "MIT",
+      "scripts": {
+          "server": "node server"
+      }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
