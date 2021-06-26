@@ -1,19 +1,18 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import TextEditor from '../components/TextEditor';
 import WhiteBoard from '../components/WhiteBoard';
 import TargetBoard from '../components/TargetBoard';
-const GameBody = () => {
-    const [code, setCode] = useState("<div></div>\n<style>\ndiv{\n width: 150px;\n height:150px;\n background-color: grey;\n}\n</style>");
+const GameBody = ({src, code, setCode}) => {
     return (
         <div className="row">
             <div className="col-4">
                 <TextEditor code={code} setCode={setCode} />
             </div>
             <div className="col-4">
-                <WhiteBoard code={code} />
+                <WhiteBoard code={code} src={src}/>
             </div>
             <div className="col-4">
-                <TargetBoard />
+                <TargetBoard src={src}/>
             </div>
         </div>
     )

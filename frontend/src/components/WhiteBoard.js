@@ -1,11 +1,10 @@
 import { useEffect, useState } from 'react';
-import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from 'react-html-parser';
+import ReactHtmlParser from 'react-html-parser';
 import ReactShadowRoot from 'react-shadow-root';
 import * as htmlToImage from 'html-to-image';
 import { ReactCompareSlider, ReactCompareSliderImage, ReactCompareSliderHandle } from 'react-compare-slider';
 
-import targetImg from '../Kid.png'
-const WhiteBoard = ({ code }) => {
+const WhiteBoard = ({ code, src }) => {
     const [dom, setDom] = useState(ReactHtmlParser(code));
     const [image, setImage] = useState(null);
     // useEffect(()=>{
@@ -17,6 +16,7 @@ const WhiteBoard = ({ code }) => {
         if (node)
             htmlToImage.toPng(node)
                 .then(function (dataUrl) {
+                    // console.log(dataUrl)
                     setImage(dataUrl)
                 })
                 .catch(function (error) {
@@ -24,20 +24,27 @@ const WhiteBoard = ({ code }) => {
                 });
     }, [code])
     return (
-        <div className="board">
-            <div id="whiteBoard">
-                <ReactShadowRoot>
-                    <div>{dom}</div>
-                </ReactShadowRoot>
+        <div>
+            <div className="board_top">
+                This is Your output
             </div>
-            <ReactCompareSlider
-                itemOne={<ReactCompareSliderImage src="" srcSet={image} alt="Image one" />}
-                itemTwo={<ReactCompareSliderImage src="" srcSet={targetImg} alt="Image two" />}
-                handle={<ReactCompareSliderHandle buttonStyle={{display: 'none'}} linesStyle={{height: '100%', width: 4, backgroundColor: '#0db0f091'}}/>}
-                position="100"
-                id="coverImage"
-            />
-            {/* <div id="coverImage">{image}</div> */}
+            <div className="board">
+                <ReactCompareSlider
+                    itemOne={<ReactCompareSliderImage src="" srcSet={image} alt="Image one" />}
+                    itemTwo={<ReactCompareSliderImage src="" srcSet={src} alt="Image two" />}
+                    handle={<ReactCompareSliderHandle buttonStyle={{ display: 'none' }} linesStyle={{ height: '100%', width: 4, backgroundColor: '#0db0f091' }} />}
+                    position="100"
+                    id="coverImage"
+                />
+                <div className="board" id="whiteBoard">
+                    <ReactShadowRoot>
+                        <div>{dom}</div>
+                    </ReactShadowRoot>
+                </div>
+            </div>
+            <div className="board_bottom">
+                Drag image to Show Diff
+            </div>
         </div>
     )
 }

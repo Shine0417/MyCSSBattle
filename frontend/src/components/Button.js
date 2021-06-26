@@ -1,6 +1,7 @@
-const Button = ({ text }) => {
+const Button = ({ text, onClick, className }) => {
+    const customClass = `btn btn-primary ${className}`
     return (
-        <button className="btn btn-primary">
+        <button className={customClass} onClick={onClick}>
             {text}
         </button>
     )

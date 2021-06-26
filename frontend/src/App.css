@@ -1,60 +1,43 @@
-/* 
-* {
-    margin: 0;
-    box-sizing: border-box;
-}
-html,
-body,
-#root,
-#root>div {
-    height: 100%;
-}
-
-div {
-    display: block;
-} */
-
 #gameBody {
+    position: absolute;
     max-width: 100vw;
-    max-height: 80vh;
-    /* display: flex;
-    flex-direction: row;
-    min-height: calc(100vh - 6.5rem);
-    height: calc(100vh - 6.5rem); */
+    max-height: 100vh;
 }
 
-.container_item {
-    /* display: flex;
-    flex-direction: column;
-    min-width: 25rem; */
+#whiteBoard {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -2;
 }
 
-#targetBoard,
 .board {
     position: relative;
     width: 30vw;
-    height: 67vh;
+    height: 50vh;
     margin: 0;
     background-color: white;
     border-radius: 1%;
     border: 1px solid pink;
-    overflow: hidden;
 }
 
-#whiteBoard {
+.board_bottom {
     position: relative;
-    width: 400px;
-    height: 67vh;
-    margin: 0;
-    background-color: white;
-    border-radius: 1%;
-    overflow: hidden;
+}
+
+.board_top {
+    position: relative;
 }
 
 #coverImage {
+    position: relative !important;
+    width: 30vw;
+    height: 50vh;
+    z-index: 2;
+}
+
+.popup {
     position: absolute !important;
-    height: 100%;
-    width: 100%;
     top: 0;
     left: 0;
     z-index: 2;
@@ -66,14 +49,15 @@ img {
 }
 
 pre {
-    height: 67vh;
+    height: 60vh;
     border-radius: 1%;
     border: 1px solid pink;
 }
 
 #logo {
     /* color: Pink; */
-    width: 20vw;
+    float: left;
+    width: 250px;
     font-weight: 800;
     font-family: Arial, Helvetica;
     /* background-color: blanchedalmond; */
@@ -87,13 +71,66 @@ pre {
     background-color: #0db0f091 !important;
 }
 
+.progress_bar {
+    width: 50vw;
+    line-height: 100%;
+}
+
 .headerItem {
-    width: 20%;
+    width: 30%;
 }
 
 .btn-primary {
     border-color: #f00df0a8 !important;
     background-color: #f00df083 !important;
+    outline-color: black;
+}
+
+#score-container {
+    border-radius: 3%;
+    border: 1px solid #f00df0a8;
+    background-color: #f00df083;
+    color: white;
+}
+
+#footer_container {
+    width: 100vw;
+}
+
+#signin {
+    position: relative;
+    left: 3vw;
+    width: 235px;
+    height: 165px;
+    border-radius: 2%;
+    align-items: center;
+    background-color: white;
+}
+
+.HeaderText {
+    position: relative;
+    margin: 0;
+    width: 60vw;
+    height: 15vh;
+    font-weight: 800;
+    font-family: Arial, Helvetica;
+    font-size: 4em;
+    /* background-color: blanchedalmond; */
+    /* border-color: blanchedalmond; */
+    color: rgba(0, 0, 0, 0.7);
+}
+
+#signinContainer {
+    position: absolute;
+    left: 17vw;
+    top: 24vh;
+    width: 40vw;
+    height: 70vh;
+}
+
+#challenge {
+    font-size: 6em;
+    left: -1vw;
 }
 
 .textEditor {

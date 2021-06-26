@@ -1,14 +1,17 @@
 import Button from "./Button";
-
-const Footer = ({ text }) => {
+import {ProgressBar} from 'react-bootstrap'
+const Footer = ({ score, percentage, onSubmit }) => {
+    const currentScore = `CurrentScore: ${score}`
     return (
-        <div className="">
-            <div className="progress">
-                <div>Similarity</div>
-                <div className="progress-bar" role="progressbar" style={{ width: "50%" }} aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">50%</div>
+        <div className="d-flex justify-content-center" id="footer_container">
+            <div className="text-center">
+                <Button onClick={onSubmit} text="Check Similarity"></Button>
             </div>
-            <div>
-                <Button text="Import Template" />
+            <div className="progress_bar m-2">
+                <ProgressBar now={percentage} label={`${percentage}%`} />
+            </div>
+            <div className="text-center mx-4">
+                <button className="btn btn-secondary" disabled={true}>{currentScore}</button>
             </div>
         </div>)
 }
