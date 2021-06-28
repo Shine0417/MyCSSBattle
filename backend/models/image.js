@@ -6,12 +6,16 @@ const ImageSchema = new Schema({
     bestCode: { type: String, default: 'none' },
     bestScore: { type: Number, default: 0, required: true },
     bestName: { type: String, default: 'none' },
-    path: { type: String, default: '', unique: true, required: true },
+    img:
+    {
+        data: Buffer,
+        contentType: String
+    }
 });
 const ImageModel = mongoose.model('Image', ImageSchema);
 
 const getImageInfoByName = async (name) => {
-    return (({ name, bestScore, bestName, path }) => ({ name, bestScore, bestName, path }))(await ImageModel.findOne({ name: name }));
+    return (({ name, bestScore, bestName }) => ({ name, bestScore, bestName }))(await ImageModel.findOne({ name: name }));
 }
 
 const updateScore = async (name, bestScore, bestCode, bestName) => {

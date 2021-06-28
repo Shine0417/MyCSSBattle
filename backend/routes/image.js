@@ -4,16 +4,16 @@ import path from 'path';
 import nodeHtmlToImage from 'node-html-to-image';
 import compareImgDiff from '../tool/compareImage.js'
 import { storage, upload } from '../tool/saveImage.js';
-import ImageModel, { getImageInfoByName, updateScore , getImageInfos} from '../models/image.js';
+import ImageModel, { getImageInfoByName, updateScore, getImageInfos } from '../models/image.js';
 import db from '../db/mongo.js';
 
 const router = express.Router()
 
-router.get('/getImageInfos', async (req, res)=>{
+router.get('/getImageInfos', async (req, res) => {
   console.log("/getImageNames ", req.query);
   const info = await getImageInfos();
   console.log("send info:")
-  return res.send({msg: "Success", infos: info})
+  return res.send({ msg: "Success", infos: info })
 })
 
 router.get('/getImageInfo', async (req, res) => {
@@ -28,8 +28,11 @@ router.get('/getImageInfo', async (req, res) => {
 
 router.get('/getImage', async (req, res) => {
   console.log("/image ", req.query);
-  if (req.query.path) {
-    return res.sendFile(path.resolve(path.dirname(path.join("./public/", req.query.path, ".png"))));
+  if (req.query.name) {
+    const data  = await ImageModel.findOne({name: req.query.name})
+    console.log(data.img)
+    res.contentType('image/jpeg');
+    return res.end(data.img.data, 'binary');
   }
   return res.send("Error")
 })
@@ -39,7 +42,13 @@ router.post('/newImage', upload.single('image'), async (req, res) => {
   if (!req.body.name || !req.file.filename)
     return res.send("Error")
   try {
-    await ImageModel.create({ name: req.body.name, path: req.file.filename });
+    const data = await ImageModel.create({
+      name: req.body.name, img: {
+        data: fs.readFileSync(path.resolve(path.dirname(path.join("./public/", req.file.filename, ".png")))),
+        contentType: 'image/png'
+      }
+    });
+    console.log("45", data);
   } catch (error) {
     console.log(error.message)
     return res.send(error.message);
@@ -59,7 +68,7 @@ router.post('/submitCode', async (req, res) => {
     })
     const percentage = await compareImgDiff(getAbsolutePath(originalImage.path), newImageFilename);
     const newScore = getScore(percentage, bestCode.length)
-    console.log("score: ", newScore, ", percentage: "+ percentage);
+    console.log("score: ", newScore, ", percentage: " + percentage);
     if (originalImage.bestScore < newScore) await updateScore(originalImage.name, newScore, bestCode, bestName);
 
     await fs.unlink(newImageFilename, (err) => {

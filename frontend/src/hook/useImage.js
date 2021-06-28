@@ -21,14 +21,14 @@ const useImage = () => {
                 }
             })
     }
-    const getImage = async (path) => {
-        await instance.get("/getImage", { responseType: "arraybuffer", params: { path: path } })
+    const getImage = async (name) => {
+        await instance.get("/getImage", { responseType: "arraybuffer", params: { name: name } })
             .then((res) => {
                 const b64Data = Buffer.from(res.data, 'binary').toString('base64');
 
                 let newImage = images;
                 newImage = newImage.map(image => {
-                    if (image.path === path)
+                    if (image.name === name)
                         image.url = `data:image/png;base64,${b64Data}`;
                     return image;
                 })

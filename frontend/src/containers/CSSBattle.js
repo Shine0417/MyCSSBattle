@@ -11,14 +11,14 @@ const CSSBattle = () => {
     const [logIn, setLogin] = useState(null);
     useEffect(() => {
         if (images[curImg])
-            getImage(images[curImg].path);
+            getImage(images[curImg].name);
     }, [curImg]);
     const onSubmit = () => {
         submitCode(images[curImg].name, code, logIn);
     }
     useEffect(() =>{
         if (images[curImg])
-            getImage(images[curImg].path);
+            getImage(images[curImg].name);
     }, [logIn])
     return (
         <>
