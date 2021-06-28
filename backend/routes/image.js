@@ -64,7 +64,9 @@ router.post('/submitCode', async (req, res) => {
 
     console.log(originalImage.img);
     var buf = Buffer.from(originalImage.img.data, 'base64');
+    console.log(buf);
     fs.writeFile('./public/image.png', buf, (e)=>console.log(e));
+    console.log("done write");
 
     const newImageFilename = "./public/" + bestName + "-" + Date.now() + ".png";
     await nodeHtmlToImage({
