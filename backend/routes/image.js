@@ -61,17 +61,14 @@ router.post('/submitCode', async (req, res) => {
   const { name, bestCode, bestName } = req.query
   try {
     const originalImage = await ImageModel.findOne({name: name})
-
-    console.log(originalImage.img);
     var buf = Buffer.from(originalImage.img.data, 'base64');
-    console.log(buf);
     fs.writeFile('./public/image.png', buf, (e)=>console.log(e));
-    console.log("done write");
 
     const newImageFilename = "./public/" + bestName + "-" + Date.now() + ".png";
     await nodeHtmlToImage({
       output: newImageFilename,
-      html: bestCode
+      html: bestCode,
+      puppeteerArgs: { args: ["--no-sandbox"] }
     })
     const percentage = await compareImgDiff(getAbsolutePath("image.png"), newImageFilename);
     const newScore = getScore(percentage, bestCode.length)
