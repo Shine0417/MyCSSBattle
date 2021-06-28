@@ -3,12 +3,11 @@ import { useState, useEffect } from 'react';
 const useImage = () => {
     const [images, setImages] = useState([]);
     const [curScore, setCurScore] = useState(0);
-    const development = process.env.NODE_ENV !== 'production'   
-    const instance = axios.create({ baseURL: development ?"http://localhost:5000/api/image":'https://obscure-reaches-51945.herokuapp.com/api/image' });
+    const development = process.env.NODE_ENV !== 'production'
+    const instance = axios.create({ baseURL: development ? "http://localhost:5000/api/image" : 'https://obscure-reaches-51945.herokuapp.com/api/image' });
     useEffect(() => {
         getNames();
     }, [])
-    
     const getNames = async () => {
         await instance.get("/getImageInfos")
             .then((res) => {
@@ -45,6 +44,15 @@ const useImage = () => {
                 const { msg, score } = res.data;
                 if (msg === "Success") {
                     setCurScore(parseInt(score));
+                    let newImage = images;
+                    newImage = newImage.map(image => {
+                        if (image.name === name && parseInt(score) > image.bestScore) {
+                            image.bestScore = parseInt(score);
+                            image.bestName = bestName;
+                        }
+                        return image;
+                    })
+                    setImages(newImage);
                 }
             })
     }

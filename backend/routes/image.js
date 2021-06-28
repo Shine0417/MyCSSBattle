@@ -60,13 +60,18 @@ router.post('/submitCode', async (req, res) => {
   console.log("/submitCode ", req.query);
   const { name, bestCode, bestName } = req.query
   try {
-    const originalImage = await getImageInfoByName(name);
+    const originalImage = await ImageModel.findOne({name: name})
+
+    console.log(originalImage.img);
+    var buf = Buffer.from(originalImage.img.data, 'base64');
+    fs.writeFile('./public/image.png', buf, (e)=>console.log(e));
+
     const newImageFilename = "./public/" + bestName + "-" + Date.now() + ".png";
     await nodeHtmlToImage({
       output: newImageFilename,
       html: bestCode
     })
-    const percentage = await compareImgDiff(getAbsolutePath(originalImage.path), newImageFilename);
+    const percentage = await compareImgDiff(getAbsolutePath("image.png"), newImageFilename);
     const newScore = getScore(percentage, bestCode.length)
     console.log("score: ", newScore, ", percentage: " + percentage);
     if (originalImage.bestScore < newScore) await updateScore(originalImage.name, newScore, bestCode, bestName);

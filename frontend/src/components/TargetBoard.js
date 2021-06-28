@@ -8,7 +8,7 @@ const TargetBoard = ({ src }) => {
     const [color, setColor] = useState("");
     const popup = (pop === true) ? <TwitterPicker colors={usedColor} color={color} className="popup" onChange={(c, e) => setColor(c.hex)}></TwitterPicker> : <></>
 
-    const img = (src === "" || !src) ? "" : <ColorExtractor getColors={(c) => setUsedColor(c)} maxColors={4} >
+    const img = (src === "" || !src) ? "" : <ColorExtractor getColors={(c) => setUsedColor(c)} >
         <img src={src} alt="Select a Level" onClick={() => setPop(!pop)} />
     </ColorExtractor>
 
